@@ -39,7 +39,7 @@
 - create the connection to RDS
 - create a crawler to generate the table from RDS to Catalog
 
-3. create the ETL Job
+3. Create the ETL Job
 - Resource: S3 bucket
 - Transfor: rename, drop columns
 - Target: RDS Postgres database

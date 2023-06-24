@@ -3,25 +3,28 @@ import json
 import pandas as pd
 
 f = Faker()
+n = 10
 
-data = {
-    "firstname" : [],
-    "lastname" : [],
-    "address":[]
-}
-for i in range(5):
-    data["firstname"].append(f.unique.first_name())
-    data["lastname"].append(f.unique.last_name())
-    data["address"].append(
-        {
-            "state":f.unique.state(),
-            "city":f.unique.city(),
-            "zipcode":f.unique.zipcode()
-        }
-    )
+for i in range(n):
+    data = {
+        "firstname" : [],
+        "lastname" : [],
+        "address":[]
+    }
+    for i in range(5):
+        data["firstname"].append(f.unique.first_name())
+        data["lastname"].append(f.unique.last_name())
+        data["address"].append(
+            {
+                "state":f.unique.state(),
+                "city":f.unique.city(),
+                "zipcode":f.unique.zipcode()
+            }
+        )
 
-df = pd.DataFrame.from_dict(data)
+    df = pd.DataFrame.from_dict(data)
 
-df.to_json("json_data2.json",orient='records', lines=True)
-
-df.to_csv("csv_data2.csv",index=False)
+    csv_filename = "csv_data" + str(i+1) + ".csv"
+    json_filename = "json_data" + str(i+1) + ".json"
+    df.to_csv(csv_filename, index=False)
+    df.to_json(json_filename,orient='records', lines=True)

@@ -2,18 +2,21 @@ from faker import Faker
 import pandas as pd
 
 f = Faker()
+n = 10
+for i in range(n):
+    data = {
+        "firstname" : [],
+        "lastname" : [],
+        "ssn" : []
+    }
+    for i in range(5):
+        data["firstname"].append(f.unique.first_name())
+        data["lastname"].append(f.unique.last_name())
+        data["ssn"].append(f.unique.ssn())
 
-data = {
-    "firstname" : [],
-    "lastname" : [],
-    "ssn" : []
-}
-for i in range(5):
-    data["firstname"].append(f.unique.first_name())
-    data["lastname"].append(f.unique.last_name())
-    data["ssn"].append(f.unique.ssn())
-
-df = pd.DataFrame.from_dict(data)
-
-df.to_csv("csv_data1.csv", index=False)
-df.to_json("json_data1.json",orient='records', lines=True)
+    df = pd.DataFrame.from_dict(data)
+    
+    csv_filename = "csv_data" + str(i+1) + ".csv"
+    json_filename = "json_data" + str(i+1) + ".json"
+    df.to_csv(csv_filename, index=False)
+    df.to_json(json_filename,orient='records', lines=True)
