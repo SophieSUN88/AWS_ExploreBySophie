@@ -1,39 +1,50 @@
-% AWS GLUE Turotial
+# AWS GLUE Turotial
 **Explore with Sophie**
 
-**Contents:**
+## Preparation
+1. IAM Role
+- AmazonRDSFullAccess
+- AmazonS3FullAccess
+- AWSGlueServiceRole
 
-[[_TOC_]]
+2. LakeFormation
+- Grant the permission to the database/all_tables in Catagory
+- Register the s3 path
 
-# Preparation
-## 1. IAM Role
+3. Data in S3
+- use Faker library to generate data
+- save data in json file
+- check the IAM user to connect S3 programmly
+- upload the file from local to s3 bucket
 
-## 2. LakeFormation
+## Catalog and Crawler
+1. create the table manually
+2. create the table with cralwer
+3. create the table with schema in registry
 
-## 3. Instance and RDS
+
+## ETL Job
+### 1. Create a simple virtual ETL Job
+- Resource: S3 bucket
+- Transfor: rename, drop columns
+- Target: S3 bucket
+
+### 2. Create a ETL Job from S3 to RDS
+1. Instance and RDS
 - create an EC2
 - create RDS Postgres
 - create a table
 
-## 4. Data in S3
-- upload
+2. Crawler the table in RDS Postgres
+- create the connection to RDS
+- create a crawler to generate the table from RDS to Catalog
 
-# Catalog and Crawler
-1. create the table manually
-2. create the table with cralwer
-3. create the table with schema in registry
-4. create the connection to RDS, and get the table from RDS with crawler
-
-# ETL Job
-## 1. Create a simple virtual ETL Job
+3. create the ETL Job
 - Resource: S3 bucket
 - Transfor: rename, drop columns
-- Target: S3 bucket
-## 2. Create a ETL Job from S3 to RDS
-- Resource: S3 bucket
-- Transfor: rename, drop columns
-- Target: RDS
-## 3. Other features
+- Target: RDS Postgres database
+
+### 3. Other features
 - [Bookmark](https://docs.aws.amazon.com/glue/latest/dg/monitor-continuations.html)
 - [Schedules](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html)
 
